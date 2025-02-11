@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donaciones entre usuarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: green;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: darkgreen;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .modal-content h2 {
+            margin-bottom: 20px;
+        }
+        .modal-content p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .close-btn {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .close-btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Donaciones entre usuarios</h1>
+        <p>Colabora con 5 dólares por única vez y tendrás la posibilidad de recibir donaciones infinitas de parte de otros usuarios.</p>
+        <p>Toca el botón para ponerte en contacto con la persona que recibirá tu donación y para acordar el medio por el cual se realizará la colaboración.</p>
+        <button class="btn" onclick="openModal()">Contactar</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Contacto</h2>
+            <p>Nombre: <span id="contact-name"></span></p>
+            <p>WhatsApp: <a id="contact-whatsapp" href="#" target="_blank"></a></p>
+            <button class="close-btn" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Datos modificables (nombre y WhatsApp)
+        const contactData = {
+            name: "Juan", // Cambia este valor para actualizar el nombre
+            whatsapp: "+54 3482 712477" // Cambia este valor para actualizar el WhatsApp
+        };
+
+        // Función para abrir el modal y cargar los datos dinámicamente
+        function openModal() {
+            document.getElementById('contact-name').textContent = contactData.name;
+            document.getElementById('contact-whatsapp').textContent = contactData.whatsapp;
+            document.getElementById('contact-whatsapp').href = `https://wa.me/${contactData.whatsapp.replace(/\D/g, '')}`;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
